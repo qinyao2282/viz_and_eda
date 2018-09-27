@@ -31,3 +31,69 @@ weather_df =
 weather_df
 ```
 
+##Start a plot
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax))
+```
+
+scatterplot
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) +
+  geom_point()
+```
+
+```{r}
+weather_df %>% 
+  filter(name == "CentralPark_NY") %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point()
+  
+```
+
+
+```{r}
+weather_sp = 
+  ggplot(weather_df, aes(x = tmin, y = tmax)) +
+  geom_point()
+```
+
+##More plot options
+
+add an aesthetic
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) +
+  geom_point(aes(color = name))
+```
+
+Add a geom
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(se = FALSE)
+#se turns off the confidence band
+```
+
+Facetting...
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(se = FALSE) +
+  facet_grid( ~ name)
+```
+
+A more interesting plot
+
+```{r}
+ggplot(weather_df, aes(x = date, y = tmax, color = name, size = prcp)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  facet_grid( ~ name)
+
+```
+
+
+
+
